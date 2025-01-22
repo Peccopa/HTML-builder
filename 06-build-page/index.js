@@ -13,7 +13,6 @@ const componentsPath = path.join(__dirname, 'components');
     fs.mkdir(distAssetsPath, { recursive: true }, () => {
       copyAssets();
       mergeStyles();
-      // mergeHTML();
       asyncMergeHTML();
     });
   });
@@ -70,24 +69,3 @@ async function asyncMergeHTML() {
     }
   }
 }
-
-// function mergeHTML() {
-//   const readStream = fs.createReadStream(templatePath, 'utf-8');
-//   readStream.on('data', (data) => {
-//     let strData = data.toString();
-//     fs.readdir(componentsPath, { withFileTypes: true }, (err, files) => {
-//       files.forEach((file) => {
-//         // console.log(file);
-//         if (file.isFile() && file.name.slice(-4) === 'html') {
-//           const filePath = path.join(componentsPath, file.name);
-//           const readStream = fs.createReadStream(filePath, 'utf-8');
-//           readStream.on('data', (chunk) => {
-//             const componentName = `{{${file.name.replace('.html', '')}}}`;
-//             strData = strData.replaceAll(componentName, chunk);
-//             fs.writeFile(indexPath, strData, () => {});
-//           });
-//         }
-//       });
-//     });
-//   });
-// }
